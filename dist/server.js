@@ -1,22 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_yoga_1 = require("graphql-yoga");
+/*
+Scalar Types
+
+String Boolean, Int, Float, ID
+*/
 // Type definitions
-var typeDefs = "\ntype Query {\n    hello: String!\n    name: String!\n    location: String!\n    bio: String!\n}\n";
+var typeDefs = "\ntype Query {\n   me: User!\n   post: Post!\n}\n\ntype User {\n    id: ID!\n    name: String!\n    email: String!\n    age: Int\n}\n\ntype Post {\n    id: ID!\n    title: String!\n    body: String!\n    published: Boolean!\n}\n";
 // Resolvers
 var resolvers = {
     Query: {
-        hello: function () {
-            return 'This is my first query!';
+        me: function () {
+            return {
+                id: '123',
+                name: 'Brian',
+                email: 'brianbawuah96@gmail.com',
+                age: 28
+            };
         },
-        name: function () {
-            return 'Brian Bawuah';
-        },
-        location: function () {
-            return 'Almere';
-        },
-        bio: function () {
-            return 'Creating digital products!';
+        post: function () {
+            return {
+                id: '234r4',
+                title: 'GraphQL is nice',
+                body: 'This is the body of the article',
+                published: false
+            };
         }
     }
 };
